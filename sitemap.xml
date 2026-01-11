@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc></loc>
+<loc>https://djolewebsiteict.github.io/BlueSkyHosting/index.html</loc>
 <lastmod>2026-1-9</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.80</priority>
 </url>
 <url>
-<loc></loc>
+<loc>https://djolewebsiteict.github.io/BlueSkyHosting/autor.html</loc>
 <lastmod>2026-1-9</lastmod>
 <changefreq>yearly</changefreq>
 <priority>0.40</priority>
 </url>
+
 </urlset>
