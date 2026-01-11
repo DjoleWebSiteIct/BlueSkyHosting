@@ -136,21 +136,85 @@ sekcijeList.forEach((item, index) => {
   kontejnerSekcije.appendChild(sekcija);
 });
 
-// servisi kompresovano za vidljivost koda 
-
-const services = [ { category: "Hosting Services", name: "Shared Hosting", description: "A cost-effective solution for beginners and small websites. ", features: [ "Ideal for personal sites and projects", "Easy setup and management", "Affordable pricing", "Free SSL certificate" ] }, 
-{ category: "Hosting Services", name: "Cloud Hosting", description: "Flexible and scalable hosting powered by multiple servers.", features: [ "On-demand resource scaling", "High availability and uptime", "Pay-as-you-use model", "Perfect for growing websites" ] },
-{ category: "Hosting Services", name: "VPS Hosting ", description: "More power and control than shared hosting.", features: [ "Dedicated resources", "Full root access", "Custom server configurations", "Suitable for developers and businesses" ] }, 
-{ category: "Hosting Services", name: "Dedicated Server Hosting", description: "A physical server dedicated to one customer.", features: [ "Maximum performance", "Full server control", "Advanced security", "Best for high-traffic websites" ] }, 
-{ category: "Website & Application Services", name: "Website Builder", description: "Create websites without coding.", features: [ "Drag-and-drop editor", "Professional templates", "Mobile-friendly designs", "Fast publishing" ] }, 
-{ category: "Website & Application Services", name: "Application Hosting", description: "Optimized hosting for popular apps.", features: [ "WordPress hosting", "Database hosting", "CMS and framework support", "One-click installation" ] }, 
-{ category: "Security Services", name: "SSL Certificates", description: "Encrypt data and secure websites.", features: [ "Free and premium SSL options", "Improves trust and SEO", "Easy installation" ] }, 
-{ category: "Security Services", name: "DDoS Protection", description: "Protect websites from malicious attacks.", features: [ "Traffic filtering", "Automatic threat detection", "Network-level protection" ] }, 
-{ category: "Security Services", name: "Backup & Recovery", description: "Keep your data safe.", features: [ "Automated daily backups", "Easy data restoration", "Off-site storage" ] }, 
-{ category: "Email & Domain Services", name: "Domain Registration", description: "Register and manage domains in one place.", features: [ "Multiple domain extensions", "Easy DNS management", "Domain privacy protection" ] }, 
-{ category: "Email & Domain Services", name: "Email Hosting", description: "Professional email solutions.", features: [ "Custom domain email addresses", "Spam and virus protection", "Webmail and mobile access" , "Easy migration" ] }, 
-{ category: "Support & Management", name: "Managed Hosting", description: "We handle the technical work for you.", features: [ "Server maintenance", "Software updates", "Security monitoring", "Technical support" ] }, 
-{ category: "Support & Management", name: "24/7 Technical Support", description: "Help whenever you need it.", features: [ "Live chat and email support", "Knowledge base and tutorials", "Fast response times","24/7 uptime" ] } ];
+const services = [ 
+{ 
+  category: "Hosting Services", 
+  name: "Shared Hosting", 
+  description: "A cost-effective solution for beginners and small websites. ", 
+  features: [ "Ideal for personal sites and projects", "Easy setup and management", "Affordable pricing", "Free SSL certificate" ] 
+}, 
+{
+  category: "Hosting Services",
+  name: "Cloud Hosting",
+  description: "Flexible and scalable hosting powered by multiple servers.", 
+  features: [ "On-demand resource scaling", "High availability and uptime", "Pay-as-you-use model", "Perfect for growing websites" ] 
+},
+{
+  category: "Hosting Services",
+  name: "VPS Hosting ",
+  description: "More power and control than shared hosting.",
+  features: [ "Dedicated resources", "Full root access", "Custom server configurations", "Suitable for developers and businesses" ] 
+}, 
+{
+  category: "Hosting Services",
+  name: "Dedicated Server Hosting", 
+  description: "A physical server dedicated to one customer.",
+  features: [ "Maximum performance", "Full server control", "Advanced security", "Best for high-traffic websites" ] 
+}, 
+{
+  category: "Website & Application Services",
+  name: "Website Builder",
+  description: "Create websites without coding.", 
+  features: [ "Drag-and-drop editor", "Professional templates", "Mobile-friendly designs", "Fast publishing" ] 
+}, 
+{ 
+  category: "Website & Application Services", 
+  name: "Application Hosting", 
+  description: "Optimized hosting for popular apps.", 
+  features: [ "WordPress hosting", "Database hosting", "CMS and framework support", "One-click installation" ] 
+}, 
+{ 
+  category: "Security Services", 
+  name: "SSL Certificates", 
+  description: "Encrypt data and secure websites.", 
+  features: [ "Free and premium SSL options", "Improves trust and SEO", "Easy installation" ] 
+}, 
+{ 
+  category: "Security Services", 
+  name: "DDoS Protection", 
+  description: "Protect websites from malicious attacks.", 
+  features: [ "Traffic filtering", "Automatic threat detection", "Network-level protection" ] 
+}, 
+{ 
+  category: "Security Services", 
+  name: "Backup & Recovery", 
+  description: "Keep your data safe.", 
+  features: [ "Automated daily backups", "Easy data restoration", "Off-site storage" ] 
+}, 
+{ 
+  category: "Email & Domain Services", 
+  name: "Domain Registration", 
+  description: "Register and manage domains in one place.", 
+  features: [ "Multiple domain extensions", "Easy DNS management", "Domain privacy protection" ] 
+}, 
+{ 
+  category: "Email & Domain Services", 
+  name: "Email Hosting", 
+  description: "Professional email solutions.", 
+  features: [ "Custom domain email addresses", "Spam and virus protection", "Webmail and mobile access" , "Easy migration" ] 
+}, 
+{ 
+  category: "Support & Management", 
+  name: "Managed Hosting", 
+  description: "We handle the technical work for you.", 
+  features: [ "Server maintenance", "Software updates", "Security monitoring", "Technical support" ] 
+}, 
+{ 
+  category: "Support & Management", 
+  name: "24/7 Technical Support", 
+  description: "Help whenever you need it.", 
+  features: [ "Live chat and email support", "Knowledge base and tutorials", "Fast response times","24/7 uptime" ] 
+} ];
 
 
 //ispis i filtriranje servisa
@@ -202,7 +266,12 @@ function prikaz(reset = false) {
 
   currentIndex += brUcitaj;
 
-  loadMoreBtn.style.display = currentIndex >= filtrirano.length ? "none" : "inline-block";
+  if (currentIndex >= filtrirano.length) 
+  {
+    loadMoreBtn.style.display = "none";
+  } else {
+    loadMoreBtn.style.display = "inline-block";
+  }
 }
 
 // inicijalno prikaz
@@ -235,16 +304,17 @@ kategorijeSelect.addEventListener("change", () => {
 
 let tajmerDatum = new Date("Mar 14, 2026 23:59:59:59").getTime();
 setInterval(function(){
-let trenutniDatum = new Date().getTime();
-let razlika = tajmerDatum - trenutniDatum;
 
-let dani = Math.floor(razlika / (1000 * 60 * 60 * 24));
-let sati = Math.floor((razlika % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-let minuti = Math.floor((razlika % (1000 * 60 * 60)) / (1000 * 60));
-let sekunde = Math.floor((razlika % (1000 * 60)) / 1000);
+  let trenutniDatum = new Date().getTime();
+  let razlika = tajmerDatum - trenutniDatum;
 
-if(document.getElementById('snizenjetajmer')){
-document.getElementById('snizenjetajmer').innerHTML ="SPECIAL HOLIDAY SALE 30% off ALL services: <br>"+ dani + "d " + sati + "h " + minuti + "m " + sekunde + "s";
-}
+  let dani = Math.floor(razlika / (1000 * 60 * 60 * 24));
+  let sati = Math.floor((razlika % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minuti = Math.floor((razlika % (1000 * 60 * 60)) / (1000 * 60));
+  let sekunde = Math.floor((razlika % (1000 * 60)) / 1000);
+
+  if(document.getElementById('snizenjetajmer')){
+    document.getElementById('snizenjetajmer').innerHTML ="SPECIAL HOLIDAY SALE 30% off ALL services: <br>"+ dani + "d " + sati + "h " + minuti + "m " + sekunde + "s";
+  }
 },1000);
 
